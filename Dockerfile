@@ -6,11 +6,10 @@
 #CMD /opt/bitnami/kafka/bin/connect-standalone.sh /opt/bitnami/kafka/config/connect-standalone.properties /opt/bitnami/kafka/config/mongo.properties
 
 FROM confluentinc/cp-kafka-connect-base:6.1.1
-
-RUN    mkdir -p /bitnami/kafka/config \
-    && chown tempuser /bitnami/kafka/config
 USER tempuser
-RUN    confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.0.0 \
+RUN    mkdir -p /bitnami/kafka/config \
+    && chown tempuser /bitnami/kafka/config \
+    && confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.0.0 \
     && confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.4.1 \
     && confluent-hub install --no-prompt debezium/debezium-connector-mysql:latest
 CMD ./connect-standalone.sh ./connect-standalone.properties
