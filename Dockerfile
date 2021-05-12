@@ -8,7 +8,7 @@
 FROM confluentinc/cp-kafka-connect-base:6.1.1
 
 RUN    mkdir -p /bitnami/kafka/config
-    && confluent-hub install confluentinc/kafka-connect-s3:10.0.0 \
-    && confluent-hub install debezium/debezium-connector-postgresql:1.4.1 \
-    && confluent-hub install debezium/debezium-connector-mysql:latest
+    && confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.0.0 \
+    && confluent-hub install --no-prompt debezium/debezium-connector-postgresql:1.4.1 \
+    && confluent-hub install --no-prompt debezium/debezium-connector-mysql:latest
 CMD ./connect-standalone.sh ./connect-standalone.properties
